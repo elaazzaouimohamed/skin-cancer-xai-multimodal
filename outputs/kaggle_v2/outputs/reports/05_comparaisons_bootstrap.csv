@@ -1,0 +1,5 @@
+comparaison,AUC,IC95 bas,IC95 haut,ΔAUC,ΔAUC IC95 bas,ΔAUC IC95 haut,P(Δ ≤ 0)
+E6b Tardive image+clinique  vs  E1a Clinique,0.925,0.911,0.938,0.086,0.07,0.104,0.0
+E6b Tardive image+clinique  vs  E3 Image DermLIP,0.925,0.911,0.938,0.019,0.012,0.025,0.0
+E6b Tardive image+clinique  vs  E5 Concepts,0.925,0.911,0.938,0.081,0.066,0.097,0.0
+E6b Tardive image+clinique  vs  E7b À porte (réseau),0.925,0.911,0.938,-0.008,-0.016,-0.001,0.988

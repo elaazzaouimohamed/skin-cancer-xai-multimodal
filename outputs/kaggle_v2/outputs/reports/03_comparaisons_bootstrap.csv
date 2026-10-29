@@ -1,0 +1,4 @@
+comparaison,AUC,IC95 bas,IC95 haut,ΔAUC,ΔAUC IC95 bas,ΔAUC IC95 haut,P(Δ ≤ 0)
+E3 DermLIP sonde linéaire  vs  E2* ImageNet sonde linéaire,0.919,0.905,0.933,0.058,0.044,0.072,0.0
+E3 DermLIP sonde linéaire  vs  E4 DermLIP zéro-exemple,0.919,0.905,0.933,0.081,0.064,0.097,0.0
+E3 DermLIP sonde linéaire  vs  E1a Clinique – logistique,0.919,0.905,0.933,0.079,0.059,0.101,0.0

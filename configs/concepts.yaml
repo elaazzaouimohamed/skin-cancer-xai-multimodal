@@ -1,0 +1,211 @@
+# Vocabulaire de concepts cliniques utilisé par le notebook 04 (score de concepts DermLIP).
+#
+# Chaque concept est décrit par plusieurs formulations en anglais (langue d'entraînement de DermLIP) ;
+# leurs plongements sont moyennés. Le score d'une image = similarité avec le concept
+# moins similarité avec les phrases de référence neutres.
+#
+# Champs :
+#   name            identifiant (sans espace)
+#   label_fr        libellé affiché dans les explications
+#   group           famille du concept (forme, surface, couleur, vaisseaux, contexte, artefact)
+#   expected        diagnostics où le concept est attendu (sert seulement à vérifier la cohérence, jamais à sélectionner)
+#   related_symptom symptôme clinique de PAD-UFES-20 lié au concept (contrôle de validité), ou null
+#   artefact        true = concept de surveillance (biais), jamais utilisé comme variable du modèle
+#   prompts         formulations du concept
+
+reference_prompts:
+  - "a clinical photo of skin."
+  - "a close-up photo of a skin lesion."
+  - "a smartphone photo of the skin."
+
+concepts:
+  - name: pearly_translucent
+    label_fr: "aspect perlé ou translucide"
+    group: surface
+    expected: [BCC]
+    related_symptom: null
+    prompts:
+      - "a pearly translucent skin lesion"
+      - "a shiny pearly papule on the skin"
+      - "a translucent nodule with a pearly rolled border"
+
+  - name: telangiectasia
+    label_fr: "petits vaisseaux visibles (télangiectasies)"
+    group: vaisseaux
+    expected: [BCC]
+    related_symptom: null
+    prompts:
+      - "a skin lesion with visible thin blood vessels"
+      - "arborizing red vessels on a skin lesion"
+      - "telangiectasia on the surface of a lesion"
+
+  - name: ulceration
+    label_fr: "ulcération"
+    group: surface
+    expected: [BCC, SCC]
+    related_symptom: bleed
+    prompts:
+      - "an ulcerated skin lesion"
+      - "a skin lesion with an open ulcer"
+      - "an ulcer in the center of a skin tumor"
+
+  - name: crust
+    label_fr: "croûte"
+    group: surface
+    expected: [SCC, BCC]
+    related_symptom: bleed
+    prompts:
+      - "a skin lesion covered with a crust"
+      - "a crusted skin lesion"
+      - "a scab on top of a skin lesion"
+
+  - name: bleeding
+    label_fr: "saignement"
+    group: surface
+    expected: [BCC, SCC]
+    related_symptom: bleed
+    prompts:
+      - "a bleeding skin lesion"
+      - "a skin lesion with fresh blood"
+      - "a friable lesion that bleeds easily"
+
+  - name: scale
+    label_fr: "squames (surface rugueuse)"
+    group: surface
+    expected: [ACK, SCC]
+    related_symptom: null
+    prompts:
+      - "a rough scaly patch of skin"
+      - "a skin lesion with white scales"
+      - "a dry scaly keratotic lesion"
+
+  - name: hyperkeratosis
+    label_fr: "hyperkératose (corne cutanée)"
+    group: surface
+    expected: [SCC]
+    related_symptom: null
+    prompts:
+      - "a thick hyperkeratotic skin lesion"
+      - "a horn-like keratin growth on the skin"
+      - "a cutaneous horn"
+
+  - name: erythema
+    label_fr: "rougeur (érythème)"
+    group: couleur
+    expected: [ACK, SCC, BCC]
+    related_symptom: null
+    prompts:
+      - "a red erythematous skin patch"
+      - "a pink red lesion on the skin"
+      - "redness and inflammation of the skin"
+
+  - name: nodule
+    label_fr: "nodule surélevé"
+    group: forme
+    expected: [BCC, SCC]
+    related_symptom: elevation
+    prompts:
+      - "a raised firm nodule on the skin"
+      - "a dome-shaped skin nodule"
+      - "an elevated round tumor on the skin"
+
+  - name: flat_patch
+    label_fr: "tache plane"
+    group: forme
+    expected: [ACK, NEV]
+    related_symptom: elevation
+    prompts:
+      - "a flat patch on the skin"
+      - "a flat macule that is not raised"
+      - "a flat discolored spot on the skin"
+
+  - name: brown_uniform
+    label_fr: "pigmentation brune uniforme"
+    group: couleur
+    expected: [NEV, SEK]
+    related_symptom: null
+    prompts:
+      - "a uniformly brown pigmented lesion"
+      - "an evenly colored brown mole"
+      - "a light brown spot with a single color"
+
+  - name: dark_pigmentation
+    label_fr: "pigmentation très foncée"
+    group: couleur
+    expected: [MEL, SEK]
+    related_symptom: null
+    prompts:
+      - "a very dark black pigmented lesion"
+      - "a black skin lesion"
+      - "a dark brown to black spot on the skin"
+
+  - name: multicolor
+    label_fr: "plusieurs couleurs"
+    group: couleur
+    expected: [MEL]
+    related_symptom: changed
+    prompts:
+      - "a lesion with multiple colors brown black and blue"
+      - "a variegated pigmented lesion"
+      - "an irregularly colored mole"
+
+  - name: irregular_border
+    label_fr: "bords irréguliers, asymétrie"
+    group: forme
+    expected: [MEL, BCC]
+    related_symptom: changed
+    prompts:
+      - "a lesion with irregular jagged borders"
+      - "an asymmetric lesion with an irregular edge"
+      - "a pigmented lesion with poorly defined borders"
+
+  - name: regular_border
+    label_fr: "bords réguliers, forme symétrique"
+    group: forme
+    expected: [NEV]
+    related_symptom: null
+    prompts:
+      - "a small round symmetric lesion with a smooth regular border"
+      - "a symmetric oval mole"
+      - "a well circumscribed round lesion"
+
+  - name: stuck_on
+    label_fr: "aspect « posé » cireux"
+    group: surface
+    expected: [SEK]
+    related_symptom: null
+    prompts:
+      - "a waxy stuck-on lesion"
+      - "a lesion that looks pasted on the skin"
+      - "a stuck-on warty plaque"
+
+  - name: verrucous
+    label_fr: "surface verruqueuse"
+    group: surface
+    expected: [SEK]
+    related_symptom: null
+    prompts:
+      - "a warty verrucous surface"
+      - "a lesion with a rough cerebriform surface"
+      - "a papillomatous wart-like lesion"
+
+  - name: sun_damage
+    label_fr: "peau abîmée par le soleil"
+    group: contexte
+    expected: [ACK, BCC, SCC]
+    related_symptom: null
+    prompts:
+      - "sun damaged skin with freckles and wrinkles"
+      - "photodamaged skin of an elderly person"
+      - "chronically sun exposed skin"
+
+  - name: skin_marker_ink
+    label_fr: "marque de stylo chirurgical"
+    group: artefact
+    artefact: true
+    expected: []
+    related_symptom: null
+    prompts:
+      - "a skin lesion marked with a surgical skin marker pen"
+      - "blue ink drawn around a skin lesion"
+      - "pen marks on the skin"

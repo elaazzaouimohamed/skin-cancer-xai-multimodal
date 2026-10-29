@@ -1,0 +1,21 @@
+# Environnement du projet (Python 3.10 ou plus récent)
+# Installation :  pip install -r requirements.txt
+#
+# PyTorch : sur une machine sans GPU, la version CPU suffit pour les notebooks 01 à 06 ;
+# l'ajustement fin optionnel (E9, notebook 05) demande un GPU (par exemple Google Colab).
+
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+scipy>=1.11
+matplotlib>=3.8
+pillow>=10.0
+pyyaml>=6.0
+joblib>=1.3
+
+torch>=2.2
+torchvision>=0.17
+open_clip_torch>=2.24      # DermLIP (notebooks 03, 04, 06)
+
+jupyter
+nbformat

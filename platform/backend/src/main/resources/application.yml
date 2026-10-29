@@ -1,0 +1,75 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: dermai-backend
+  # valeurs locales non versionnées (mot de passe MySQL, clé JWT…) : copier application-local.example.yml
+  config:
+    import: optional:classpath:application-local.yml
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 16MB
+  # Base MySQL locale (schéma « dermai-xai » de MySQL Workbench). Les tables sont créées / mises à jour
+  # automatiquement au démarrage. Variables d'environnement possibles : DB_URL, DB_USERNAME, DB_PASSWORD.
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/dermai-xai?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}
+    username: ${DB_USERNAME:root}
+    password: "${DB_PASSWORD:}"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  h2:
+    console:
+      enabled: false
+
+app:
+  ml:
+    base-url: http://127.0.0.1:8000
+    timeout-seconds: 180
+  llm:
+    enabled: true
+    base-url: http://127.0.0.1:1234/v1
+    # identifiant du modèle chargé dans LM Studio (onglet « Developer » → nom affiché)
+    model: gemma-3-4b-it
+    temperature: 0.2
+    max-tokens: 700
+    timeout-seconds: 120
+  storage:
+    dir: ./data/uploads
+  security:
+    # clé de signature des jetons JWT (au moins 32 caractères) — à changer en production
+    jwt-secret: ${JWT_SECRET:remplacer-par-une-cle-aleatoire-d-au-moins-32-caracteres}
+    jwt-ttl-hours: 12
+  admin:
+    # Compte administrateur initialisé à chaque démarrage : créé s'il n'existe pas, toujours actif avec le rôle ADMIN.
+    # reset-password: true remet le mot de passe ci-dessous au démarrage (en cas d'oubli), puis remettre false.
+    email: admin@dermai.ma
+    password: Admin@2026
+    full-name: Administrateur DermAI
+    reset-password: false
+  cors:
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173
+
+---
+# Profil de secours sans MySQL (base fichier H2) : mvn spring-boot:run "-Dspring-boot.run.profiles=h2"
+spring:
+  config:
+    activate:
+      on-profile: h2
+  datasource:
+    url: jdbc:h2:file:./data/dermai-db;AUTO_SERVER=TRUE
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console

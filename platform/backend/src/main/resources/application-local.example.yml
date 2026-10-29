@@ -1,0 +1,9 @@
+# Copier ce fichier en application-local.yml (même dossier) et renseigner vos valeurs.
+# application-local.yml est ignoré par Git.
+spring:
+  datasource:
+    password: "votre-mot-de-passe-mysql"
+
+app:
+  security:
+    jwt-secret: une-cle-aleatoire-d-au-moins-32-caracteres

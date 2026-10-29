@@ -1,0 +1,42 @@
+{
+  "modele_retenu": "E6b Tardive image+clinique",
+  "auc_validation_croisee": 0.9308,
+  "test": {
+    "AUC": 0.9465,
+    "IC95 bas": 0.9175,
+    "IC95 haut": 0.9712,
+    "ΔAUC": 0.0513,
+    "ΔAUC IC95 bas": 0.0125,
+    "ΔAUC IC95 haut": 0.0909,
+    "P(Δ ≤ 0)": 0.004
+  },
+  "ece_test": 0.0586,
+  "seuils": {
+    "0,5": 0.5,
+    "Youden (dev)": 0.4767,
+    "Triage sensibilité ≥ 90 % (dev)": 0.3752
+  },
+  "points_de_fonctionnement_test": {
+    "0,5": {
+      "AUC": 0.947,
+      "Exactitude équilibrée": 0.87,
+      "Sensibilité": 0.903,
+      "Spécificité": 0.837,
+      "F1": 0.88
+    },
+    "Youden (dev)": {
+      "AUC": 0.947,
+      "Exactitude équilibrée": 0.873,
+      "Sensibilité": 0.914,
+      "Spécificité": 0.831,
+      "F1": 0.883
+    },
+    "Triage sensibilité ≥ 90 % (dev)": {
+      "AUC": 0.947,
+      "Exactitude équilibrée": 0.876,
+      "Sensibilité": 0.968,
+      "Spécificité": 0.785,
+      "F1": 0.893
+    }
+  }
+}

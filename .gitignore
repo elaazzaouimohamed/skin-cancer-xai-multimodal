@@ -1,0 +1,39 @@
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.env
+
+# Jeu de données PAD-UFES-20 (à télécharger depuis Mendeley Data, voir README)
+zr7vgbcyr2-1/
+zr7vgbcyr2-1.zip
+outputs/checkpoints/*
+!outputs/checkpoints/.gitkeep
+
+# Données locales de la plateforme (comptes, images envoyées, conversations)
+data/*.db
+data/uploads/
+
+# Secrets locaux
+platform/backend/src/main/resources/application-local.yml
+
+# Dépendances et builds
+node_modules/
+platform/frontend/dist/
+platform/backend/target/
+
+# Documents de travail non publiés
+outputs/reports/
+.github/modernize/
+
+# Poster (non publié)
+poster/
+
+# Dossiers sans intérêt pour le dépôt (squelette vide, anciennes versions, sorties locales)
+src/
+data/
+notebooks/_archive/
+notebooks/03_fusion_xai.ipynb
+outputs/figures/
+outputs/checkpoints/
+outputs/kaggle_v2/__huggingface_repos__.json
